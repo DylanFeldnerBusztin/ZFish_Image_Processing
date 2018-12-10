@@ -1,4 +1,4 @@
-def ds_img(img_path):
+def ds_img(img):
 # Create downsampled image
 
     import ants
@@ -9,15 +9,10 @@ def ds_img(img_path):
     import warnings
     warnings.filterwarnings('ignore', '.*output shape of zoom.*')
     
-    input1  = ants.image_read(img_path)
+    input1  = img_path
     input_array = input1.numpy
     
     downsampled_array = zoom(input_array(), (0.66, 1, 0.145))
-    # downsampled_array = zoom(input_array(), (0.33, 0.504, 0.073))
-    # downsampled_array = zoom(input_array(), (0.66, 1, 0.145))
-
-    print(input_array().shape)
-    print(downsampled_array.shape)
     
     # Create image from array
     downsampled_image = ants.from_numpy(downsampled_array)
@@ -26,3 +21,10 @@ def ds_img(img_path):
     # ants.image_write(downsampled_image, 'downsampled_4.tif_')
     
     return downsampled_image
+
+    # Old code
+    # downsampled_array = zoom(input_array(), (0.33, 0.504, 0.073))
+    # downsampled_array = zoom(input_array(), (0.66, 1, 0.145))
+
+     # print(input_array().shape)
+     # print(downsampled_array.shape)
